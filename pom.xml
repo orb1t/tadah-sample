@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.mdkt.datawiz</groupId>
+	<artifactId>tadah-sample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>tadah-sample</name>
+	<description>Example of using tada in unit tests, integration tests and acceptance tests</description>
+	<properties>
+		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+		<tadah.version>0.0.1-SNAPSHOT</tadah.version>
+		<fitnesse.version>20140201</fitnesse.version>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.mdkt.datawiz</groupId>
+			<artifactId>tadah</artifactId>
+			<version>${tadah.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.fitnesse</groupId>
+			<artifactId>fitnesse</artifactId>
+			<version>${fitnesse.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+</project>
