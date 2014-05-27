@@ -1,18 +1,23 @@
 package com.yummynoodlebar.rest.functional;
 
-import com.yummynoodlebar.rest.controller.fixture.RestDataFixture;
-import com.yummynoodlebar.rest.domain.Order;
-import com.yummynoodlebar.rest.domain.OrderStatus;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
+
+import java.util.Arrays;
+
 import org.junit.Test;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-
-import static junit.framework.TestCase.*;
-import static junit.framework.TestCase.assertTrue;
+import com.yummynoodlebar.rest.controller.fixture.RestDataFixture;
+import com.yummynoodlebar.rest.domain.Order;
 
 public class OrderTests {
 
@@ -43,7 +48,7 @@ public class OrderTests {
     RestTemplate template = new RestTemplate();
     try {
       ResponseEntity<Order> entity = template.postForEntity(
-          "http://localhost:8080/aggregators/orders",
+          "http://localhost:8080/tadah-sample/aggregators/orders",
           requestEntity, Order.class);
 
       fail("Request Passed incorrectly with status " + entity.getStatusCode());
@@ -73,7 +78,7 @@ public class OrderTests {
 
     RestTemplate template = new RestTemplate();
     return template.postForEntity(
-        "http://localhost:8080/aggregators/orders",
+        "http://localhost:8080/tadah-sample/aggregators/orders",
         requestEntity, Order.class);
   }
 

@@ -13,13 +13,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth)
 			throws Exception {
-		auth.inMemoryAuthentication().withUser("letsnosh").password("noshing")
-				.roles("USER");
+		auth.inMemoryAuthentication()
+			.withUser("letsnosh").password("noshing").roles("USER");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/aggregators/**").hasRole("USER")
-				.anyRequest().anonymous().and().httpBasic();
+		http.csrf().disable()
+			.antMatcher("/aggregators/**")
+			.authorizeRequests()
+				.anyRequest().hasRole("USER")
+				.and()
+			.httpBasic();
 	}
 }
