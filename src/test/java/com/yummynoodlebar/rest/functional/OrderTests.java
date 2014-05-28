@@ -27,9 +27,9 @@ public class OrderTests {
     ResponseEntity<Order> entity = createOrder();
 
     String path = entity.getHeaders().getLocation().getPath();
-
+    System.out.println("Path in Location header is " + path);
     assertEquals(HttpStatus.CREATED, entity.getStatusCode());
-    assertTrue(path.startsWith("/aggregators/orders/"));
+    assertTrue(path.startsWith("/tadah-sample/aggregators/orders/"));
     Order order = entity.getBody();
 
     System.out.println ("The Order ID is " + order.getKey());
