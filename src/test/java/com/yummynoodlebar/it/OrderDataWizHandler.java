@@ -30,7 +30,7 @@ public class OrderDataWizHandler extends AbstractDataWiz {
 			}
 			buf.deleteCharAt(buf.length() - 1);
 		}
-		buf.append("}");
+		buf.append("}}");
 		return buf.toString();
 	}
 }

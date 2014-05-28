@@ -9,6 +9,8 @@ import java.util.Map;
 
 import junit.framework.Assert;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,6 +32,8 @@ import com.yummynoodlebar.rest.domain.Order;
  */
 public class OrderIT {
 
+	private Log logger = LogFactory.getLog(OrderIT.class);
+
 	@Rule
 	public TestName testName = new TestName();
 
@@ -50,8 +54,10 @@ public class OrderIT {
 		expectedOrder.put((String)DataWizEngine.instance().getContextValue("order1"), (Integer)DataWizEngine.instance().getContextValue("quantity1"));
 		expectedOrder.put((String)DataWizEngine.instance().getContextValue("order2"), (Integer)DataWizEngine.instance().getContextValue("quantity2"));
 
+		String orderJSON = OrderDataWizHandler.toOrderJSON(expectedOrder);
+		logger.debug("Order JSON = " + orderJSON);
 		HttpEntity<String> requestEntity = new HttpEntity<String>(
-		        OrderDataWizHandler.toOrderJSON(expectedOrder), getHeaders(auth));
+		        orderJSON, getHeaders(auth));
 
 		RestTemplate template = new RestTemplate();
 		HttpEntity<Order> responseEntity = template.postForEntity(
